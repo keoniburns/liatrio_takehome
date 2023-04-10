@@ -1,6 +1,7 @@
-const http = require("http");
 const hostname = "127.0.0.1";
-const port = 3000;
+const port = 8000;
+var express = require('express');
+var app = express();
 
 const data = require('./data.json');
 const fs = require("fs")
@@ -22,14 +23,12 @@ fs.writeFile(filename, JSON.stringify(file),function writeJSON(err) {
 
 })
 
-const server = http.createServer(function (req, res){
-    console.log(res.err)
+app.get('/', function(req,res){
     res.writeHead(200, {"content-type": "text/plain"});
-    //res.end("hello world\n");
     res.write(`${data.message}\n ${data.timestamp}\n`);
     res.end();
-});
+})
 
-server.listen(port, hostname, function (){
-    console.log(`server running at http://${hostname}:${port}/`);
+var server = app.listen(port, function(){
+    console.log(`server running at: ${hostname}:${port}`)
 });
