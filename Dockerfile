@@ -6,5 +6,5 @@ COPY package*.json ./index.js ./data.json ./
 
 RUN npm install
 
-EXPOSE 8000
+EXPOSE 80
 CMD ["node", "index.js"]

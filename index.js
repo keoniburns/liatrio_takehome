@@ -1,10 +1,11 @@
 const hostname = "127.0.0.1";
-const port = 8000;
+const port = 80;
 var express = require('express');
 var app = express();
 
 const data = require('./data.json');
-const fs = require("fs")
+const fs = require("fs");
+const { STATUS_CODES } = require('http');
 const filename = './data.json'
 const file = require(filename);
 
@@ -27,6 +28,7 @@ app.get('/', function(req,res){
     res.writeHead(200, {"content-type": "text/plain"});
     res.write(`${data.message}\n ${data.timestamp}\n`);
     res.end();
+    
 })
 
 var server = app.listen(port, function(){
