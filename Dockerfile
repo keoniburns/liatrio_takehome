@@ -2,11 +2,9 @@ FROM node:18.15.0
 
 WORKDIR /usr/src/app
 
-COPY package*.json ./
+COPY package*.json ./index.js ./data.json ./	
 
 RUN npm install
 
-COPY . .
-
-EXPOSE 80
+EXPOSE 8000
 CMD ["node", "index.js"]
