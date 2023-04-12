@@ -18,7 +18,7 @@ jobs:
          run: docker build . --file Dockerfile --tag liatrio
          
       -  name: run img
-         run: docker run --rm -d 80:80 liatrio
+         run: docker run --rm -d --init -p 80:80 liatrio
          
       -  name: run tests
          uses: liatrio/github-actions/apprentice-action@master
