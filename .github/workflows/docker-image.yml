@@ -7,17 +7,38 @@ on:
     branches: [ "main" ]
 
 jobs:
+  
   build:
     name: Build the Docker image
     runs-on: ubuntu-latest
 
     steps:
-     -  uses: actions/checkout@v3
-     -  run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+      -  uses: actions/checkout@v3
+      -  run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+      -  uses: addnab/docker-run-action@v3
+         with: 
+           image: test-image:latest
+           
+      
+      
+     
+#   Run:
+#     name: run image
+#     runs-on: ubuntu-latest
+#     steps:
+#       -  uses: docker/build-push-action@v2
+#          with:
+#            tags: test-image:latest
+#            push: false
+#       -  uses: addnab/docker-run-action@v3
+#          with: 
+#            image: test-image:latest
+#            run: echo "running"
       
   test: 
     name: run tests
     runs-on: ubuntu-latest
+    
     
     steps:
        -  uses: liatrio/github-actions/apprentice-action@master
