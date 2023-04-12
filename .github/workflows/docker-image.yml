@@ -14,13 +14,22 @@ jobs:
 
     steps:
       -  uses: actions/checkout@v3
-      -  run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
-      
-      -  name: run the image
-      -  run:  docker run -it --rm --init -d 80:80 kburns98/liatrio-takehome
-      
+      -  name: build
+         run: docker build . --file Dockerfile --tag liatrio
+         
+      -  name: run img
+         run: docker run --rm -d 80:80 liatrio
+         
       -  name: run tests
-      -  uses: liatrio/github-actions/apprentice-action@master
+         uses: liatrio/github-actions/apprentice-action@master
+       
+
+  
+#       -  name: run the image
+#       -  run:  docker run -it --rm --init -d 80:80 kburns98/liatrio-takehome
+      
+#       -  name: run tests
+#       -  uses: liatrio/github-actions/apprentice-action@master
            
       
      
