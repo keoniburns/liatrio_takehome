@@ -30,7 +30,7 @@ jobs:
            DOCKER_USER: ${{secrets.DOCKER_USER}}
            DOCKER_PASS: ${{secrets.DOCKER_PASS}}
          run: |
-           docker login -u $DOCKER_USER -p $DOCKER_PASSSWORD
+           docker login -u $DOCKER_USER -p $DOCKER_PASS
       -  name: run image
          run: docker run --rm -d --init -p 80:80 kburns98/liatrio-takehome
       -  name: run tests   
