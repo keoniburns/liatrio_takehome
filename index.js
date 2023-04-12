@@ -25,11 +25,8 @@ fs.writeFile(filename, JSON.stringify(file),function writeJSON(err) {
 
 app.get('/', function(req,res){
     console.log(res.statusCode);
-    res.writeHead(200, {"content-type": "application/json"});
-    res.end();
-    console.log(data);
-    return(data);
-    
+    res.json(data);
+    res.end();    
 })
 
 var server = app.listen(port, function(){
