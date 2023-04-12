@@ -16,25 +16,45 @@ jobs:
       -  uses: actions/checkout@v3
       -  name: build
          run: docker build . --file Dockerfile --tag liatrio
-         
-         
-  test:
-     needs: build
-     name: run image and tests
-     runs-on: ubuntu-latest
      
-     steps:
-      -  uses: actions/checkout@v3
+      -  name: run image
+         run: docker run --rm -d --init -p 80:80 liatrio
+      
+      -  name: test
+         uses: liatrio/github-actions/apprentice-action@master
+       
       -  name: docker login
          env:
            DOCKER_USER: ${{secrets.DOCKER_USER}}
            DOCKER_PASS: ${{secrets.DOCKER_PASS}}
          run: |
            docker login -u $DOCKER_USER -p $DOCKER_PASS
-      -  name: run image
-         run: docker run --rm -d --init -p 80:80 kburns98/liatrio-takehome
-      -  name: run tests   
-         uses: liatrio/github-actions/apprentice-action@master
+           
+      -  name: docker push
+         run: docker push ${{secrets.DOCKER_USER}}/liatrio_takehome
+         
+         
+      
+         
+         
+         
+#   test:
+#      needs: build
+#      name: run image and tests
+#      runs-on: ubuntu-latest
+     
+#      steps:
+#       -  uses: actions/checkout@v3
+#       -  name: docker login
+#          env:
+#            DOCKER_USER: ${{secrets.DOCKER_USER}}
+#            DOCKER_PASS: ${{secrets.DOCKER_PASS}}
+#          run: |
+#            docker login -u $DOCKER_USER -p $DOCKER_PASS
+#       -  name: run image
+#          run: docker run --rm -d --init -p 80:80 kburns98/liatrio-takehome
+#       -  name: run tests   
+#          uses: liatrio/github-actions/apprentice-action@master
          
 #       -  name: run tests
 #          uses: liatrio/github-actions/apprentice-action@master
