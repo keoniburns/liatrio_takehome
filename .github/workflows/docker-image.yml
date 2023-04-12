@@ -14,10 +14,10 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: build
-        run: docker build . --file Dockerfile --tag tagname
+        run: docker build . --file Dockerfile --tag kburns98/liatrio_takehome
 
       - name: run image
-        run: docker run --rm -d --init -p 80:80 liatrio
+        run: docker run --rm -d --init -p 80:80 kburns98/liatrio_takehome
 
       - name: test
         uses: liatrio/github-actions/apprentice-action@master
@@ -30,7 +30,7 @@ jobs:
           docker login -u $DOCKER_USER -p $DOCKER_PASS
 
       - name: docker push
-        run: docker push ${{secrets.DOCKER_USER}}/liatrio_takehome:tagname
+        run: docker push ${{secrets.DOCKER_USER}}/liatrio_takehome
 #   test:
 #      needs: build
 #      name: run image and tests
