@@ -14,7 +14,7 @@ curMonth = date.getMonth();
 curDay = date.getDate();
 curYear = date.getFullYear();
 
-data.timestamp = `${curMonth}.${curDay}.${curYear}`;
+data.timestamp = `${curMonth}${curDay}${curYear}`;
 
 fs.writeFile(filename, JSON.stringify(file),function writeJSON(err) {
     if (err){
@@ -26,7 +26,8 @@ fs.writeFile(filename, JSON.stringify(file),function writeJSON(err) {
 
 app.get('/', function(req,res){
     res.writeHead(200, {"content-type": "text/plain"});
-    res.write(`${data.message}\n ${data.timestamp}\n`);
+    res.write(data.Message);
+    res.write(data.Timestamp);
     res.end();
     
 })
