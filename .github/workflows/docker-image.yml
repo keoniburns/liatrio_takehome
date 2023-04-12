@@ -30,7 +30,7 @@ jobs:
           docker login -u $DOCKER_USER -p $DOCKER_PASS
 
       - name: docker push
-        run: docker push ${{secrets.DOCKER_USER}}/liatrio_takehome
+        run: docker push ${{secrets.DOCKER_USER}}/liatrio_takehome:liatrio
 #   test:
 #      needs: build
 #      name: run image and tests
