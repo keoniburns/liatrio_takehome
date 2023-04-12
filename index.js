@@ -13,8 +13,8 @@ let date = new Date();
 curMonth = date.getMonth();
 curDay = date.getDate();
 curYear = date.getFullYear();
-
-data.Timestamp = `${curMonth}${curDay}${curYear}`;
+var time = `${curMonth}${curDay}${curYear}`;
+data.timestamp = Number(time);
 
 fs.writeFile(filename, JSON.stringify(file),function writeJSON(err) {
     if (err){
