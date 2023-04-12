@@ -17,15 +17,15 @@ jobs:
       -  name: build
          run: docker build . --file Dockerfile --tag liatrio
          
+      -  name: run image
+         run: docker run --rm -d --init -p 80:80 liatrio
+         
   test:
      needs: build
      name: run image and tests
      runs-on: ubuntu-latest
      
      steps:
-      -  name: run img
-         run: docker run --rm -d --init -p 80:80 liatrio
-         
       -  name: run tests
          uses: liatrio/github-actions/apprentice-action@master
        
