@@ -27,8 +27,8 @@ fs.writeFile(filename, JSON.stringify(file),function writeJSON(err) {
 app.get('/', function(req,res){
     console.log(res.statusCode);
     res.writeHead(200, {"content-type": "application/json"});
-    res.write(`${data.Message}\n`);
-    res.write(data.Timestamp);
+    res.write(data);
+\
     res.end();
     
     
