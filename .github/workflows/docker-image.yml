@@ -13,19 +13,19 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: build image
-        run: docker build . --file Dockerfile --tag ${{secrets.DOCKER_USER}}/liatrio_takehome:latest
+        run: docker build . --file Dockerfile --tag $secrets.DOCKER_USER/liatrio_takehome:latest
 
       - name: run image
-        run: docker run --rm -d --init -p 80:80 ${{secrets.DOCKER_USER}}/liatrio_takehome
+        run: docker run --rm -d --init -p 80:80 $secrets.DOCKER_USER/liatrio_takehome
       - name: test
         uses: liatrio/github-actions/apprentice-action@master
 
       - name: docker login
         env:
-          DOCKER_USER: ${{secrets.DOCKER_USER}}
-          DOCKER_PASS: ${{secrets.DOCKER_PASS}}
+          DOCKER_USER: $secrets.DOCKER_USER
+          DOCKER_PASS: $secrets.DOCKER_PASS
         run: |
           docker login -u $DOCKER_USER -p $DOCKER_PASS
 
       - name: docker push
-        run: docker push ${{secrets.DOCKER_USER}}/liatrio_takehome
+        run: docker push $secrets.DOCKER_USER/liatrio_takehome
