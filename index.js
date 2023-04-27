@@ -14,8 +14,8 @@ curMonth = date.getMonth();
 curDay = date.getDate();
 curYear = date.getFullYear();
 var time = `${curMonth}${curDay}${curYear}`;
-data.timestamp = Number(time);
 
+data.timestamp = Number(time);
 fs.writeFile(filename, JSON.stringify(file),function writeJSON(err) {
     if (err){
         return console.log(err);
